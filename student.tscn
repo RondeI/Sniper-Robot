@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0p4xjiww8knj"]
+
+[ext_resource type="Script" uid="uid://doxo0lcbg3x31" path="res://student.gd" id="1_5fjsm"]
+[ext_resource type="Texture2D" uid="uid://ce7cdud4g4vct" path="res://Sprites/student.png" id="1_8bc1h"]
+[ext_resource type="Texture2D" uid="uid://8wq0s1sjfl2x" path="res://Sprites/examPaper.png" id="2_5twd6"]
+[ext_resource type="Texture2D" uid="uid://dey4kw75g4olw" path="res://Sprites/cheatsheet.png" id="3_aycnr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8bc1h"]
+size = Vector3(1.68793, 2.04102, 0.0895996)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bc1h"]
+albedo_color = Color(0.0946376, 0.094474, 6.01634e-09, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aycnr"]
+albedo_color = Color(0.0946376, 0.094474, 6.01634e-09, 1)
+
+[node name="Student" type="Node3D"]
+script = ExtResource("1_5fjsm")
+
+[node name="studentNotPlayer" type="StaticBody3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="studentNotPlayer"]
+pixel_size = 0.002
+alpha_cut = 1
+texture = ExtResource("1_8bc1h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="studentNotPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0125427, 0.00195313, -0.00646973)
+shape = SubResource("BoxShape3D_8bc1h")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.364078, 0.657844)
+use_collision = true
+size = Vector3(1, 0.0639648, 0.684326)
+material = SubResource("StandardMaterial3D_8bc1h")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.883369, 0.964118)
+use_collision = true
+size = Vector3(1, 1.10255, 0.0717773)
+material = SubResource("StandardMaterial3D_aycnr")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.315, 0.631)
+flip_h = true
+pixel_size = 0.0005
+transparent = false
+texture = ExtResource("2_5twd6")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.331102, 0.630845)
+flip_h = true
+pixel_size = 0.0005
+transparent = false
+texture = ExtResource("3_aycnr")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0125427, 0.00195313, -0.00646973)
+shape = SubResource("BoxShape3D_8bc1h")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

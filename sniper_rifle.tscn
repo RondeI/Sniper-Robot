@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuwq2t7qkq0sx"]
+
+[ext_resource type="PackedScene" uid="uid://cjia6bpvo47ju" path="res://SniperRifle/SK_Sniper_Rifle_Full.gltf" id="1_mspix"]
+
+[node name="SniperRifle" type="StaticBody3D"]
+
+[node name="SK_Sniper_Rifle_Full" parent="." instance=ExtResource("1_mspix")]

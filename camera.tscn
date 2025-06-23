@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://dkgnnkw6d05x3"]
+
+[ext_resource type="Script" uid="uid://byq7bta8xcrs0" path="res://camera.gd" id="1_diie0"]
+[ext_resource type="Texture2D" uid="uid://cbwum7s85m2d1" path="res://Sprites/Zrzut ekranu 2025-05-21 230035.png" id="2_qqjab"]
+[ext_resource type="Texture2D" uid="uid://cltjc7yf3n64b" path="res://Sprites/man-with-camera.jpg" id="3_qqjab"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(1.58594, 0.399902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diie0"]
+albedo_color = Color(0.777537, 0.477554, 0.26672, 1)
+
+[sub_resource type="Animation" id="Animation_qqjab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D/CSGBox3D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.044, -0.585)]
+}
+
+[sub_resource type="Animation" id="Animation_diie0"]
+resource_name = "activate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D/CSGBox3D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.044, -0.585), Vector3(-1.7, 1.04389, -0.584932)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6dlx"]
+_data = {
+&"RESET": SubResource("Animation_qqjab"),
+&"activate": SubResource("Animation_diie0")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_diie0"]
+properties/0/path = NodePath("Marker3D/CSGBox3D3:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="cameraButton" type="CSGBox3D"]
+size = Vector3(1, 1, 0.189835)
+material = SubResource("StandardMaterial3D_lquwl")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00858158, -0.0955336)
+pixel_size = 0.03
+texture = ExtResource("2_qqjab")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_diie0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00976563, -1.07794, -0.586274)
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.60624, 1.2129)
+
+[node name="Sprite3D" type="Sprite3D" parent="Marker3D"]
+transform = Transform3D(0.63, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 1.044, -0.584)
+pixel_size = 0.001
+texture = ExtResource("3_qqjab")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Marker3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.044, -0.585)
+operation = 2
+size = Vector3(0.099, 0.85, 1.7)
+material = SubResource("StandardMaterial3D_diie0")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Marker3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.04346, -0.584465)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Marker3D/CSGCombiner3D"]
+size = Vector3(0.099, 1, 2)
+material = SubResource("StandardMaterial3D_diie0")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Marker3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0131531, 0, 0)
+operation = 2
+size = Vector3(0.149872, 0.85, 1.7)
+material = SubResource("StandardMaterial3D_diie0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p6dlx")
+}
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_diie0")

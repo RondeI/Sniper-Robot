@@ -1,0 +1,861 @@
+[gd_scene load_steps=35 format=3 uid="uid://d5guyqte0pbe"]
+
+[ext_resource type="Script" uid="uid://ifg1357wedcl" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://7u2i31sctnse" path="res://sk_sniper_rifle_full_2.tscn" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://rskggxykd3ys" path="res://DiamondPlate006C_4K-JPG/DiamondPlate006C_4K_Color.jpg" id="3_hqtel"]
+[ext_resource type="Texture2D" uid="uid://cqcmsnugnfun7" path="res://DiamondPlate006C_4K-JPG/DiamondPlate006C_4K_AmbientOcclusion.jpg" id="4_dw050"]
+[ext_resource type="Texture2D" uid="uid://bjppw0d5s4gdl" path="res://DiamondPlate006C_4K-JPG/DiamondPlate006C_4K_Metalness.jpg" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://d2s5mosw8kaom" path="res://DiamondPlate006C_4K-JPG/DiamondPlate006C_4K_Displacement.jpg" id="7_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://dyamj2sa8kcu4" path="res://DiamondPlate006C_4K-JPG/DiamondPlate006C_4K_NormalDX.jpg" id="7_nvl01"]
+[ext_resource type="Texture2D" uid="uid://g267s34nv3fj" path="res://DiamondPlate006C_4K-JPG/DiamondPlate006C_4K_Roughness.jpg" id="8_nvl01"]
+[ext_resource type="Texture2D" uid="uid://c8uthsdvs7ga" path="res://Sprites/eye.png" id="9_b26j0"]
+[ext_resource type="Texture2D" uid="uid://d3t5nckltsot3" path="res://Sprites/bar.png" id="10_nvl01"]
+[ext_resource type="Texture2D" uid="uid://dageshx5koloq" path="res://Sprites/barFull.png" id="11_ivps1"]
+[ext_resource type="Texture2D" uid="uid://1fweqymhmllv" path="res://Sprites/86a2d4005f50d7af4e400fd43a1fe240.jpg" id="12_bwjto"]
+[ext_resource type="Texture2D" uid="uid://bokw2ci72i7c3" path="res://Sprites/aaaa.png" id="13_606se"]
+[ext_resource type="Texture2D" uid="uid://crvfa0cll3aqu" path="res://Sprites/pngwing.com.png" id="14_u1c27"]
+[ext_resource type="Texture2D" uid="uid://i4ajc8h85sxx" path="res://Sprites/fuse.png" id="15_606se"]
+[ext_resource type="Script" uid="uid://8jwn742vvnjv" path="res://color_rect_3.gd" id="15_u1c27"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[sub_resource type="Animation" id="Animation_nvl01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oko/Sprite3D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("oko/Sprite3D3:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n7ghd"]
+resource_name = "idle"
+length = 1.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oko/Sprite3D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("oko/Sprite3D3:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivps1"]
+_data = {
+&"RESET": SubResource("Animation_nvl01"),
+&"idle": SubResource("Animation_n7ghd")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hs0m"]
+albedo_texture = ExtResource("3_hqtel")
+metallic = 1.0
+metallic_texture = ExtResource("4_sweqy")
+roughness_texture = ExtResource("8_nvl01")
+normal_enabled = true
+normal_texture = ExtResource("7_nvl01")
+ao_enabled = true
+ao_texture = ExtResource("4_dw050")
+refraction_texture = ExtResource("7_n7ghd")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u1c27"]
+radius = 1.34543
+
+[sub_resource type="Animation" id="Animation_b26j0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/SK_Sniper_Rifle_Full3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.10669, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dw050"]
+resource_name = "shoot"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/SK_Sniper_Rifle_Full3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.10669, 0), Vector3(-0.436332, -3.10669, 0), Vector3(0, -3.10669, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7ghd"]
+_data = {
+&"RESET": SubResource("Animation_b26j0"),
+&"shoot": SubResource("Animation_dw050")
+}
+
+[sub_resource type="Animation" id="Animation_urp6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ivps1"]
+resource_name = "ready"
+length = 0.45
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.6), Color(1, 0, 0, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwjto"]
+_data = {
+&"RESET": SubResource("Animation_urp6f"),
+&"ready": SubResource("Animation_ivps1")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nvl01"]
+height = 1.06778
+
+[sub_resource type="Animation" id="Animation_op7ga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 145)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u1c27"]
+resource_name = "addTime"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-17, 145), Vector2(-17, 76)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.290196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q13i1"]
+_data = {
+&"RESET": SubResource("Animation_op7ga"),
+&"addTime": SubResource("Animation_u1c27")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nvl01"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Neck:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Neck/SK_Sniper_Rifle_Full3:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Neck/SK_Sniper_Rifle_Full3:visible")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("oko:visible")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("RichTextLabel2:text")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("RichTextLabel2:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bwjto"]
+height = 1.06778
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790096, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="oko" type="Node3D" parent="."]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="oko"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ivps1")
+}
+autoplay = "idle"
+
+[node name="Sprite3D2" type="Sprite3D" parent="oko"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.157, -0.57)
+layers = 32
+flip_h = true
+pixel_size = 0.001
+texture = ExtResource("9_b26j0")
+hframes = 7
+
+[node name="Sprite3D3" type="Sprite3D" parent="oko"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 1.157, -0.57)
+layers = 32
+flip_h = true
+pixel_size = 0.001
+texture = ExtResource("9_b26j0")
+hframes = 7
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="oko"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00119, -0.0804765)
+radial_segments = 32
+rings = 32
+material = SubResource("StandardMaterial3D_2hs0m")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.273, -0.47)
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0323404)
+cull_mask = 1048543
+
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.22544e-06, -0.00214803, -0.000309467)
+target_position = Vector3(0, 0, -50)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
+
+[node name="SK_Sniper_Rifle_Full3" parent="Neck" instance=ExtResource("2_onrkg")]
+transform = Transform3D(-1.32919, 0, -0.0464112, 0, 1.33, 0, 0.0464112, 0, -1.32919, 0.378, -0.371, -0.182)
+
+[node name="Area3D" type="Area3D" parent="Neck"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/Area3D"]
+shape = SubResource("SphereShape3D_u1c27")
+
+[node name="NosyTimer" type="Timer" parent="Neck/Area3D"]
+wait_time = 6.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n7ghd")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visibility_layer = 16
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.627316, 0.607317, 1, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visibility_layer = 16
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -409.0
+offset_right = 971.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 8
+max_value = 1.5
+step = 0.001
+fill_mode = 1
+texture_under = ExtResource("10_nvl01")
+texture_progress = ExtResource("11_ivps1")
+metadata/_edit_use_anchors_ = true
+
+[node name="FullyCharged" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bwjto")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.311404, 0)
+shape = SubResource("CapsuleShape3D_nvl01")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = 194.0
+offset_right = 277.0
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font size=24][outline_size=4][outline_color=080808]PRESS[color=22FF00] E[/color] TO VIEW THE CAMERA :DBBDDBADAWDGYUOAWDAWD AWD DVYyuioOVYIDovyawdvhulawdcvtui"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="cameraTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -305.0
+offset_top = 35.0
+offset_right = 306.0
+offset_bottom = 71.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font size=24][outline_size=4][outline_color=080808][color=FF0000]NOSY STUDENT CAN SEE YOUuUuu!!!!!!!!"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -419.0
+offset_top = -298.0
+offset_right = 419.0
+offset_bottom = -174.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font size=90][outline_size=4][outline_color=080808] PLEASE WAIT :DDD"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -268.0
+offset_top = -444.0
+offset_right = 412.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("12_bwjto")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 169.0
+offset_top = -474.0
+offset_right = 681.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("13_606se")
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -567.0
+offset_top = -489.0
+offset_right = -55.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("14_u1c27")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -587.0
+offset_top = 69.0
+offset_right = -379.0
+offset_bottom = 127.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font size=30][outline_size=4][outline_color=080808]3:00.000"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="RichTextLabel2"]
+wait_time = 180.0
+one_shot = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../RichTextLabel5")
+libraries = {
+&"": SubResource("AnimationLibrary_q13i1")
+}
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -593.0
+offset_top = 145.0
+offset_right = -385.0
+offset_bottom = 203.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font size=24][outline_size=4][outline_color=080808][color=00FF00]+1:00.000"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nvl01")
+
+[node name="Area3D2" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("CapsuleShape3D_bwjto")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -225.0
+offset_right = 250.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.332881, 0.332881, 0.332881, 1)
+script = ExtResource("15_u1c27")
+
+[node name="Button" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 61.0
+offset_right = 94.0
+offset_bottom = 93.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=00FF00]A"
+fit_content = true
+scroll_active = false
+
+[node name="Button2" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 132.0
+offset_right = 94.0
+offset_bottom = 164.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button2"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=FF0000]D"
+fit_content = true
+scroll_active = false
+
+[node name="Button3" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 283.0
+offset_right = 94.0
+offset_bottom = 315.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button3"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=FF00FF]B"
+fit_content = true
+scroll_active = false
+
+[node name="Button4" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 354.0
+offset_right = 94.0
+offset_bottom = 386.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button4"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=0000FF]C"
+fit_content = true
+scroll_active = false
+
+[node name="Button5" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 61.0
+offset_right = 438.0
+offset_bottom = 93.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button5"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=FF0000]4"
+fit_content = true
+scroll_active = false
+
+[node name="Button6" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 132.0
+offset_right = 438.0
+offset_bottom = 164.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button6"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=0000FF]3"
+fit_content = true
+scroll_active = false
+
+[node name="Button7" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 283.0
+offset_right = 438.0
+offset_bottom = 315.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button7"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=00FF00]1"
+fit_content = true
+scroll_active = false
+
+[node name="Button8" type="Button" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 354.0
+offset_right = 438.0
+offset_bottom = 386.0
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3/Button8"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 43.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[color=FF00FF]2"
+fit_content = true
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 193.0
+offset_right = 61.04
+offset_bottom = 220.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 223.0
+offset_right = 61.04
+offset_bottom = 250.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 193.0
+offset_right = 109.04
+offset_bottom = 220.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 223.0
+offset_right = 109.04
+offset_bottom = 250.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 193.0
+offset_right = 405.04
+offset_bottom = 220.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 223.0
+offset_right = 405.04
+offset_bottom = 250.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 193.0
+offset_right = 452.04
+offset_bottom = 220.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 223.0
+offset_right = 452.04
+offset_bottom = 250.805
+texture = ExtResource("15_606se")
+expand_mode = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = 194.0
+offset_right = 277.0
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font size=24][outline_size=4][outline_color=080808]PRESS[color=22FF00] E[/color] TO OPEN ELECTRIC BOX"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Neck/Area3D" to="." method="_on_area_nosy_area_entered"]
+[connection signal="area_exited" from="Neck/Area3D" to="." method="_on_area_nosy_area_exited"]
+[connection signal="timeout" from="Neck/Area3D/NosyTimer" to="." method="_on_nosy_timer_timeout"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="timeout" from="cameraTimer" to="." method="_on_camera_timer_timeout"]
+[connection signal="timeout" from="RichTextLabel2/Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area3D2" to="." method="_on_area_3d_2_area_entered"]
+[connection signal="area_exited" from="Area3D2" to="." method="_on_area_3d_2_area_exited"]
+[connection signal="toggled" from="ColorRect3/Button" to="." method="_on_button_toggled"]
+[connection signal="toggled" from="ColorRect3/Button2" to="." method="_on_button_2_toggled"]
+[connection signal="toggled" from="ColorRect3/Button3" to="." method="_on_button_3_toggled"]
+[connection signal="toggled" from="ColorRect3/Button4" to="." method="_on_button_4_toggled"]
+[connection signal="toggled" from="ColorRect3/Button5" to="." method="_on_button_5_toggled"]
+[connection signal="toggled" from="ColorRect3/Button6" to="." method="_on_button_6_toggled"]
+[connection signal="toggled" from="ColorRect3/Button7" to="." method="_on_button_7_toggled"]
+[connection signal="toggled" from="ColorRect3/Button8" to="." method="_on_button_8_toggled"]
